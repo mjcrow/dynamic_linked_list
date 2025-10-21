@@ -1,3 +1,5 @@
+import random
+
 class ListNode:
     def __init__(self, val = "", next = None):
         self.val = val
@@ -60,4 +62,50 @@ class PlayList:
             current = current.next
             index += 1
         return -1
+    
+    def reverse(self) -> None:
+        prev = None
+        current = self.head.next
+        self.tail = current
+
+        while current:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node
+
+        self.head.next = prev
+
+    
+def shuffle(self) -> None:
+
+    current = self.head.next
+    songs = []
+    while current:
+        songs.append(current.val)
+        current = current.next
+
+    random.shuffle(songs)
+
+    self.head.next = None
+    self.tail = self.head
+    for song in songs:
+        self.insertTail(song)
+
+
+
+
+    
+
+"""
+    prev = None
+current = head
+while current:
+    next_node = current.next
+    current.next = prev
+    prev = current
+    current = next_node
+head = prev
+"""
+
     

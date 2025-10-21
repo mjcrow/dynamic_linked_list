@@ -32,6 +32,29 @@ def test_find():
     assert pl.find("Red Rain") == 1
     assert pl.find("Schism") == -1
 
+def test_reverse():
+    pl = PlayList()
+    pl.insertTail("Song A")
+    pl.insertTail("Song B")
+    pl.insertTail("Song C")
+    pl.insertTail("Song D")
+    pl.reverse()
+    assert pl.listSongs() == ["Song D", "Song C", "Song B", "Song A"]
+
+def test_shuffle():
+    pl = PlayList()
+    songs = ["A", "B", "C", "D"]
+    for s in songs:
+        pl.insertTail(s)
+
+    pl.shuffle()
+    shuffled = pl.listSongs()
+
+    assert sorted(shuffled) == sorted(songs)  # same songs, different order
+    assert shuffled != songs  # likely different order (non-deterministic)
+
+
+
 if __name__ == "__main__":
     test_insert_head_and_tail()
     test_get()
